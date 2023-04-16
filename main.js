@@ -3,7 +3,7 @@
 
 // cotización
 function cotizar(n){
-    
+
     // Incialización 
     let agregarPerosnas = true
     let personas = 0
@@ -34,13 +34,13 @@ function cotizar(n){
         }
         console.log(`Precio total consulta persona ${personas}:`, contPlan) //CONTROL MUESTRA CONSOLA
 
-        
+
         let cotPersona = precioTotalConsulta + contPlan
         console.log(`cotización por persona persona ${personas}:`, cotPersona) //CONTROL MUESTRA CONSOLA
 
         cotTotal+=cotPersona
         console.log("cotización total" ,cotTotal) //CONTROL MUESTRA CONSOLA
-        
+
 
         agregarPerosnas = confirm("Viene otro paciente en compañia ?")
     }
@@ -81,3 +81,20 @@ if(consultaLowerCase === "co"){
 }else {
     alert("Lo siento, no agregaste una opción válida!")
  }
+
+ 
+ 
+ 
+ alert("¿Deseas un descuento por recomendar nuestros servicios?")
+ let descuento = prompt(" -Ingrese SI si te gustaria un descuento con nosotros\n\n -Ingresa NO y tu precio queda final")
+let descuentoLowerCase = descuento.toLocaleLowerCase()
+if(descuentoLowerCase === "si"){
+     alert("Felicitaciones!!!!!!\n\nTe has llevado un 30% por recomentar. Precio final queda en $2590")
+     function Porcentaje(cotTotal, porcentaje,){
+         return cotTotal / 100 * porcentaje; 
+     }
+     console.log(Porcentaje(3700, 30));
+
+}else if(descuentoLowerCase === "no"){
+    alert("Tu precio final es de $3700. Gracias por elegirnos!")
+}
