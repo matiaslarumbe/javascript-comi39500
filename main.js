@@ -19,7 +19,7 @@ function cotizar(n){
         let precioTotalConsulta = consulta * 1000; //cada consulta vale $1000 + lo que se agrege
         console.log(`precio total por persona ${personas}: `,precioTotalConsulta) //CONTROL MUESTRA CONSOLA
 
-        let Plan = Number(prompt(`Para ${consulta} consulta:\n\n**Dieta y Consulta**\n- Ingrese 1 si SOLO desea tener Consulta - 2700 pesos \n- Ingrese 2 si SOLO desea tener Consulta y Dieta - 2800 pesos\n- Ingrese 3 si desea Consulta, Dieta y Antropometria - 3000 pesos\n- Ingrese 4 si desea Consulta, Dieta, Antropometria y Rutina de Ejercicios - 3200 pesos\n\nIngrese que opción le interesa para: ${nombre}`))
+        let Plan = Number(prompt(`Para  ${personas} consulta:\n\n**Dieta y Consulta**\n- Ingrese 1 si SOLO desea tener Consulta - 2700 pesos \n- Ingrese 2 si SOLO desea tener Consulta y Dieta - 2800 pesos\n- Ingrese 3 si desea Consulta, Dieta y Antropometria - 3000 pesos\n- Ingrese 4 si desea Consulta, Dieta, Antropometria y Rutina de Ejercicios - 3200 pesos\n\nIngrese que opción le interesa para: ${nombre}`))
         if(consulta === 1){ //Consulta
             contPlan = 2700 *  consulta
         }else if(consulta === 2){ // Consulta y Dieta
@@ -82,19 +82,43 @@ if(consultaLowerCase === "co"){
     alert("Lo siento, no agregaste una opción válida!")
  }
 
- 
- 
+//  Se agrego function para hecer un descuento del 30%
  
  alert("¿Deseas un descuento por recomendar nuestros servicios?")
- let descuento = prompt(" -Ingrese SI si te gustaria un descuento con nosotros\n\n -Ingresa NO y tu precio queda final")
+ let descuento = prompt(" -Ingrese SI ✅ si te gustaria un descuento con nosotros\n\n -Ingresa NO ❌ y tu precio queda final")
+
 let descuentoLowerCase = descuento.toLocaleLowerCase()
 if(descuentoLowerCase === "si"){
-     alert("Felicitaciones!!!!!!\n\nTe has llevado un 30% por recomentar. Precio final queda en $2590")
+     alert("Felicitaciones!!!!!! 🎈✨🎉🎊😎 \n\nTe has llevado un 30% 💵 por recomendar 👦👩. Precio final queda en $2590")
      function Porcentaje(cotTotal, porcentaje,){
-         return cotTotal / 100 * porcentaje; 
+         return (cotTotal / 100 * porcentaje) - (cotTotal); 
      }
-     console.log(Porcentaje(3700, 30));
+        console.log(Porcentaje(3700, 30));
 
 }else if(descuentoLowerCase === "no"){
-    alert("Tu precio final es de $3700. Gracias por elegirnos!")
+    alert("Tu precio final es de 💵 $3700. Gracias por elegirnos!")
 }
+
+// Se agrego una Funcion Objeto
+alert("Juan Perez 👨🏻‍⚕️ nuestro profesional de NutriPower se comunicara con usted para su Pre consulta y quitarles todas sus dudas que tenga.")
+const profesional = {
+    nombre: "Juan",
+    apellido: "Perez",
+    edad: 38,
+    profesion: "nutricionista en deporte",
+  };
+  document.getElementById("demo").innerHTML =
+  profesional.nombre + " es " + profesional.profesion + " y coordinador de NutriPower en estos dias se comunicara con usted para hacer la Pre consulta via Tel 📱 o Zoom 🖥 gracias por elegirnos. ";
+
+//Agrege el Arrays For 
+  const beneficos = ["Bajar de Peso", "Aumentar Masa Muscular", "Aprender Alimentarse", "Medición a tu cuerpo con Antropometria"];
+let fLen = beneficos.length;
+
+let text = "<ul>";
+for (let i = 0; i < fLen; i++) {
+  text += "<li>" + beneficos[i] + "</li>";
+}
+text += "</ul>";
+
+document.getElementById("demo2").innerHTML = text
+alert("Te contamos en la Pagina Web una pequeña descripción de los Beneficion con NutriPower 💪🏻")
