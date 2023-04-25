@@ -131,15 +131,45 @@ const profesional = {
   };
   console.log(profesional);
   
-//   NO SE APLICA TEXTO EN EL HTML
+            // NO SE APLICA TEXTO EN EL HTML
 //   document.getElementById("demo").innerHTML =
 //   profesional.nombre + " es " + profesional.profesion + " y coordinador de NutriPower en estos dias se comunicara con usted para hacer la Pre consulta via Tel 📱 o Zoom 🖥 gracias por elegirnos. ";
 
-// Agrege el Arrays For
+// Agrege el Arrays
   const beneficos = ["Bajar de Peso", "Aumentar Masa Muscular", "Aprender Alimentarse", "Medición a tu cuerpo con Antropometria"];
   console.log(beneficos);
     
   beneficos.push("Descuentos por Recomendar");
   console.log(beneficos);
+        //   NO SE APLICA TEXTO EN EL HTML
 // document.getElementById("demo2").innerHTML = text
 // alert("Te contamos en la Pagina Web una pequeña descripción de los Beneficion con NutriPower }💪🏻")
+
+// agrege funcion de orden superior
+class Paciente{
+  constructor (nombre,servicios,consultas,plan,precio){
+      this.nombre= nombre;
+      this.servicios= servicios;
+      this.consultas= consultas;
+      this.plan= plan;
+      this.precio= precio;
+  }
+}
+
+const juan = new Paciente ("Juan", "consulta", 1, "consulta", 2700);
+const karina =new Paciente ("Karina", "consulta", 1, "dieta", 2800);
+const gaston =new Paciente ("Gaston", "consulta", 1, "antropometria", 3000);
+const gime =new Paciente ("Gime", "consulta", 1, "rutina", 3200);
+
+const arrayPaciente= [juan, karina, gaston, gime];
+console.log ("registro de consultas: ")
+console.log (arrayPaciente);
+
+//1) forEach: recorre el array y ejecuta una función por cada elemento. Esta es una función de OS nativa del lenguaje (js)
+
+arrayPaciente.forEach((paciente1)=>{
+  
+  console.log(paciente1);
+})
+
+arrayPaciente.forEach(paciente => console.log (paciente.precio));
