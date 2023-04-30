@@ -37,123 +37,123 @@ form.addEventListener("submit", (e) => {
   formulario.reset();
 })
 
-// // Array de plan
-// const planBase = [
-//   {
-//       plan:"consulta",
-//       id:"1",
-//       tipo:"consulta basica",
-//       precio:2700,
-//       consulta:1,
-//       descripcion:"basico"
-//   },
-//   {plan:"dieta", id:"2", tipo:"consulta y dieta", precio:2800, consulta:1, descripcion:"dieta"},
-//   {plan:"antropometria", id:"3", tipo:"consulta, dieta y antropometria", precio:3000, consulta:1, descripcion:"medicion"},
-//   {plan:"rutina de ejercicios", id:"4", tipo:"full", precio:3200, consulta:1, descripcion:"consulta, dieta, antropometria y rutina de gym"}
-// ]
+// Array de plan
+const planBase = [
+  {
+      plan:"consulta",
+      id:"1",
+      tipo:"consulta basica",
+      precio:2700,
+      consulta:1,
+      descripcion:"basico"
+  },
+  {plan:"dieta", id:"2", tipo:"consulta y dieta", precio:2800, consulta:1, descripcion:"dieta"},
+  {plan:"antropometria", id:"3", tipo:"consulta, dieta y antropometria", precio:3000, consulta:1, descripcion:"medicion"},
+  {plan:"rutina de ejercicios", id:"4", tipo:"full", precio:3200, consulta:1, descripcion:"consulta, dieta, antropometria y rutina de gym"}
+]
 
-// // OR lógico para cargar local storage
-// let carrito = JSON.parse(localStorage.getItem("carrito"))|| []
+// OR lógico para cargar local storage
+let carrito = JSON.parse(localStorage.getItem("carrito"))|| []
 
-// const totalCarritoRender = ()=>{
-//   // se encarga de calcular el total del carrito
-//   const carritoTotal = document.getElementById("carritoTotal")
-//   let total = carrito.reduce((acumulador, {precio, quantity})=>{
-//       return acumulador + (precio*quantity)
-//   }, 0)
-//   carritoTotal.innerHTML=`Precio total: $ ${total}`
-// }
+const totalCarritoRender = ()=>{
+  // se encarga de calcular el total del carrito
+  const carritoTotal = document.getElementById("carritoTotal")
+  let total = carrito.reduce((acumulador, {precio, quantity})=>{
+      return acumulador + (precio*quantity)
+  }, 0)
+  carritoTotal.innerHTML=`Precio total: $ ${total}`
+}
 
-// const agregarCarrito = (objetoCarrito)=>{
-//   // agrega productos al carrito
-//   carrito.push(objetoCarrito)
-//   totalCarritoRender()
-// }
+const agregarCarrito = (objetoCarrito)=>{
+  // agrega productos al carrito
+  carrito.push(objetoCarrito)
+  totalCarritoRender()
+}
 
-// const renderizarCarrito = ()=>{
-//   // borra el cotnenido de carrito y renderiza carrito en una lista
-//   const listaCarrito = document.getElementById("listaCarrito")
-//   // borramos para evitar clones viejos
-//   listaCarrito.innerHTML=""
-//   carrito.forEach(({plan, precio, quantity, id}) =>{
-//       let elementoLista = document.createElement("li")
-//       elementoLista.innerHTML=`Producto:${plan} -- P/u: ${precio} -- Cant.:${quantity} <button id="eliminarCarrito${id}">X</button>`
-//       listaCarrito.appendChild(elementoLista)
-//       const botonBorrar = document.getElementById(`eliminarCarrito${id}`)
-//       botonBorrar.addEventListener("click",()=>{
-//           // creo un array sin el elemento a borrar y lo igualo a carrito
-//           carrito = carrito.filter((elemento)=>{
-//               if(elemento.id !== id){
-//                   return elemento
-//               }
-//           })
-//           let carritoString = JSON.stringify(carrito)
-//           localStorage.setItem("carrito", carritoString)
-//           renderizarCarrito()
-//       })
-//       let carritoString = JSON.stringify(carrito)
-//       localStorage.setItem("carrito", carritoString)
-//   })
-// }
+const renderizarCarrito = ()=>{
+  // borra el cotnenido de carrito y renderiza carrito en una lista
+  const listaCarrito = document.getElementById("listaCarrito")
+  // borramos para evitar clones viejos
+  listaCarrito.innerHTML=""
+  carrito.forEach(({plan, precio, quantity, id}) =>{
+      let elementoLista = document.createElement("li")
+      elementoLista.innerHTML=`Producto:${plan} -- P/u: ${precio} -- Cant.:${quantity} <button id="eliminarCarrito${id}">X</button>`
+      listaCarrito.appendChild(elementoLista)
+      const botonBorrar = document.getElementById(`eliminarCarrito${id}`)
+      botonBorrar.addEventListener("click",()=>{
+          // creo un array sin el elemento a borrar y lo igualo a carrito
+          carrito = carrito.filter((elemento)=>{
+              if(elemento.id !== id){
+                  return elemento
+              }
+          })
+          let carritoString = JSON.stringify(carrito)
+          localStorage.setItem("carrito", carritoString)
+          renderizarCarrito()
+      })
+      let carritoString = JSON.stringify(carrito)
+      localStorage.setItem("carrito", carritoString)
+  })
+}
 
-// const borrarCarrito = ()=>{
-//   carrito = []
-//   let carritoString = JSON.stringify(carrito)
-//   localStorage.setItem("carrito", carritoString)
-//   renderizarCarrito()
-// }
+const borrarCarrito = ()=>{
+  carrito = []
+  let carritoString = JSON.stringify(carrito)
+  localStorage.setItem("carrito", carritoString)
+  renderizarCarrito()
+}
 
-// const renderizarPlan = ()=>{
-//   // renderiza productos en el DOM
-//   const contenedorPlan = document.getElementById("contenedorPlan")
-//   planBase.forEach(({plan, id, tipo, precio, consulta, descripcion})=>{
-//       const planCard = document.createElement("div")
-//       planCard.innerHTML = `
-//             <div class="card" style="width: 18rem;" id="producto${id}">
-//                 <div class="card-body">
-//                     <h5 class="Plan">${plan}</h5>
-//                     <h6>${tipo}</h6>
-//                     <p class="Plan">${descripcion}</p>
-//                     <span>Consulta: ${consulta}</span>
-//                     <span>$ ${precio}</span>
-//                     <form id="form${id}">
-//                         <label for="contador${id}">Cantidad</label>
-//                         <input type="number" placeholder="0" id="contador${id}">
-//                         <button class="btn btn-primary" id="botonProd${id}">Agregar</button>
-//                     </form>
-//                 </div>
-//             </div> `
-//         contenedorPlan.appendChild(planCard)
-//         const btn = document.getElementById(`botonProd${id}`)
-//         // Funcionalidad al boton de agregar para agregar prods al carrito
-//         btn.addEventListener("click",(e)=>{
-//             e.preventDefault()
-//             const contadorQuantity = Number(document.getElementById(`contador${id}`).value)
-//             if(contadorQuantity>0){
-//                 agregarCarrito({plan, id, tipo, precio, consulta, descripcion, quantity:contadorQuantity})
-//                 renderizarCarrito()
-//                 const form = document.getElementById(`form${id}`)
-//                 form.reset()
-//             }
-//         })
-//     })
-// }
+const renderizarPlan = ()=>{
+  // renderiza productos en el DOM
+  const contenedorPlan = document.getElementById("contenedorPlan")
+  planBase.forEach(({plan, id, tipo, precio, consulta, descripcion})=>{
+      const planCard = document.createElement("div")
+      planCard.innerHTML = `
+            <div class="card" style="width: 18rem;" id="producto${id}">
+                <div class="card-body">
+                    <h5 class="Plan">${plan}</h5>
+                    <h6>${tipo}</h6>
+                    <p class="Plan">${descripcion}</p>
+                    <span>Consulta: ${consulta}</span>
+                    <span>$ ${precio}</span>
+                    <form id="form${id}">
+                        <label for="contador${id}">Cantidad</label>
+                        <input type="number" placeholder="0" id="contador${id}">
+                        <button class="btn btn-primary" id="botonProd${id}">Agregar</button>
+                    </form>
+                </div>
+            </div> `
+        contenedorPlan.appendChild(planCard)
+        const btn = document.getElementById(`botonProd${id}`)
+        // Funcionalidad al boton de agregar para agregar prods al carrito
+        btn.addEventListener("click",(e)=>{
+            e.preventDefault()
+            const contadorQuantity = Number(document.getElementById(`contador${id}`).value)
+            if(contadorQuantity>0){
+                agregarCarrito({plan, id, tipo, precio, consulta, descripcion, quantity:contadorQuantity})
+                renderizarCarrito()
+                const form = document.getElementById(`form${id}`)
+                form.reset()
+            }
+        })
+    })
+}
 
-// const finalizarCompra = ()=>{
-//   // Borra el array y le da un mensaje al usuario
-//   borrarCarrito()
-//   let mensaje = document.getElementById("carritoTotal")
-//   mensaje.innerHTML = "Muchas gracias por su compra🥳, los esperamos para la consulta👨🏻‍⚕️"
+const finalizarCompra = ()=>{
+  // Borra el array y le da un mensaje al usuario
+  borrarCarrito()
+  let mensaje = document.getElementById("carritoTotal")
+  mensaje.innerHTML = "Muchas gracias por su compra🥳, los esperamos para la consulta👨🏻‍⚕️"
 
-// }
+}
 
-// // DOM
-// const compraFinal = document.getElementById("botonCompraFinal")
-// compraFinal.addEventListener("click",(()=>{finalizarCompra()}))
+// DOM
+const compraFinal = document.getElementById("botonCompraFinal")
+compraFinal.addEventListener("click",(()=>{finalizarCompra()}))
 
-// // Testing
-// renderizarPlan()
-// renderizarCarrito()
+// Testing
+renderizarPlan()
+renderizarCarrito()
 
 // Cotizaciones de consulta con Nutri Power
 
