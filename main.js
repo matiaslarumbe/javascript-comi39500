@@ -1,3 +1,5 @@
+const texto = document.getElementById("campoTexto");
+
 // Array de paciente
 class Paciente {
   constructor(nombre, apellido, correo, telefono, edad, peso, altura) {
