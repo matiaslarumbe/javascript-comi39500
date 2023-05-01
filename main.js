@@ -1,42 +1,48 @@
 const texto = document.getElementById("campoTexto");
 
 // Array de paciente
-class Paciente {
-  constructor(nombre, apellido, correo, telefono, edad, peso, altura) {
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.correo = correo;
-    this.telefono = telefono;
-    this.edad = edad;
-    this.peso = peso;
-    this.altura = altura;
-  }
+class Paciente{
+    constructor(nombre, apellido, correo, telefono, edad, peso, altura){
+      this.nombre = nombre;
+      this.apellido = apellido;
+      this.correo = correo;
+      this.telefono = telefono;
+      this.edad = edad;
+      this.peso = peso;
+      this.altura = altura;
+    }
 }
 
-const arrayPacientes = [];
+const arrayPacientes= [];
 
 //vincule el formulario:
 const form = document.getElementById("formulario");
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const name = document.getElementById("nombre");
-  const lastname = document.getElementById("apellido");
-  const email = document.getElementById("correo");
-  const phone = document.getElementById("telefono");
-  const age = document.getElementById("edad");
-  const weight = document.getElementById("peso");
-  const height = document.getElementById("altura");
+    const name = document.getElementById("nombre");
+    const lastname = document.getElementById("apellido");
+    const email = document.getElementById("correo");
+    const phone = document.getElementById("telefono");
+    const age = document.getElementById("edad");
+    const weight = document.getElementById("peso");
+    const height = document.getElementById("altura");
 
-  //crear un objeto que sea el paciente:
+    //crear un objeto que sea el paciente:
 
-  const paciente = new Paciente(name.value, lastname.value, email.value, phone.value, age.value, weight.value, height.value);
-  arrayPacientes.push(paciente);
-  console.log(arrayPacientes);
+    const paciente = new Paciente(name.value, 
+    lastname.value, 
+    email.value, 
+    phone.value, 
+    age.value, 
+    weight.value, 
+    height.value);
+    arrayPacientes.push(paciente);
+    console.log(arrayPacientes);
 
-  //Reseteamo el form al mandar los datos
-  formulario.reset();
+    //Reseteamo el form al mandar los datos
+    formulario.reset();
 })
 
 // Array de plan
@@ -47,7 +53,7 @@ const planBase = [
       tipo:"consulta basica",
       precio:2700,
       consulta:1,
-      descripcion:"basico"
+      descripcion:"basico",
   },
   {plan:"dieta", id:"2", tipo:"consulta y dieta", precio:2800, consulta:1, descripcion:"dieta"},
   {plan:"antropometria", id:"3", tipo:"consulta, dieta y antropometria", precio:3000, consulta:1, descripcion:"medicion"},
