@@ -20,7 +20,77 @@ const form = document.getElementById("formulario");
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
+   
+    // Validacion de datos requeridos
+    let nombre = document.getElementById('nombre').value;
+    if(nombre.length < 1) {
+      // libreria de Sweetalert2 para el aviso
+       Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'No has completado datos requeridos!!'
+    })
+ 
+      return;
+    }
+    let apellido = document.getElementById('apellido').value;
+    if (apellido.length < 1) {
+            Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'No has completado datos requeridos!!'
+    })
+      return;
+    }
+    let correo = document.getElementById('correo').value;
+    if (correo.length < 1) {
+            Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'No has completado datos requeridos!!'
+    })
+      return;
+    }
+    let telefono = document.getElementById('telefono').value;
+    if (telefono.length < 1) {
+            Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'No has completado datos requeridos!!'
+    })
+      return;
+    }
+    let edad = document.getElementById('edad').value;
+    if (edad.length < 1) {
+            Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'No has completado datos requeridos!!'
+    })
+      return;
+    }
+    let peso = document.getElementById('peso').value;
+    if (peso.length < 1) {
+            Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'No has completado datos requeridos!!'
+    })
+      return;
+    }
+    let altura = document.getElementById('altura').value;
+    if (altura.length < 1) {
+            Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'No has completado datos requeridos!!'
+    })
+      return;
+    }
+    
+    // this.submit();
 
+    
     const name = document.getElementById("nombre");
     const lastname = document.getElementById("apellido");
     const email = document.getElementById("correo");
@@ -28,7 +98,19 @@ form.addEventListener("submit", (e) => {
     const age = document.getElementById("edad");
     const weight = document.getElementById("peso");
     const height = document.getElementById("altura");
+    const arrayPacientes= [];
+    // libreria de Sweetalert2 para el aviso
+    Swal.fire(
+      'Felicitaciones!',
+      'Has completado todos los campos!',
+      'success'
+    )
 
+      //   e.preventDefault();
+      //   let nombre = form.elements.nombre.value; // elemento <form name="my">
+
+      //   alert("nombre")
+      // })
     //crear un objeto que sea el paciente:
 
     const paciente = new Paciente(name.value, 
@@ -43,7 +125,11 @@ form.addEventListener("submit", (e) => {
 
     //Reseteamo el form al mandar los datos
     formulario.reset();
-})
+    
+  })
+    // e.preventDefault();
+
+
 
 // Array de plan
 const planBase = [
@@ -58,7 +144,9 @@ const planBase = [
   {plan:"dieta", id:"2", tipo:"consulta y dieta", precio:2800, consulta:1, descripcion:"dieta"},
   {plan:"antropometria", id:"3", tipo:"consulta, dieta y antropometria", precio:3000, consulta:1, descripcion:"medicion"},
   {plan:"rutina de ejercicios", id:"4", tipo:"full", precio:3200, consulta:1, descripcion:"consulta, dieta, antropometria y rutina de gym"}
+  
 ]
+
 
 // OR lógico para cargar local storage
 let carrito = JSON.parse(localStorage.getItem("carrito"))|| []
@@ -66,10 +154,12 @@ let carrito = JSON.parse(localStorage.getItem("carrito"))|| []
 const totalCarritoRender = ()=>{
   // se encarga de calcular el total del carrito
   const carritoTotal = document.getElementById("carritoTotal")
+  
   let total = carrito.reduce((acumulador, {precio, quantity})=>{
       return acumulador + (precio*quantity)
   }, 0)
   carritoTotal.innerHTML=`Precio total: $ ${total}`
+
 }
 
 const agregarCarrito = (objetoCarrito)=>{
@@ -79,13 +169,14 @@ const agregarCarrito = (objetoCarrito)=>{
 }
 
 const renderizarCarrito = ()=>{
-  // borra el cotnenido de carrito y renderiza carrito en una lista
+  // borra el contenido de carrito y renderiza carrito en una lista
   const listaCarrito = document.getElementById("listaCarrito")
+ 
   // borramos para evitar clones viejos
   listaCarrito.innerHTML=""
-  carrito.forEach(({plan, precio, quantity, id}) =>{
+  carrito.forEach(({plan, precio, quantity, id, img}) =>{
       let elementoLista = document.createElement("li")
-      elementoLista.innerHTML=`Producto:${plan} -- P/u: ${precio} -- Cant.:${quantity} <button id="eliminarCarrito${id}">X</button>`
+      elementoLista.innerHTML=`Producto:${plan} -- P/u:$ ${precio} -- Cant.:${quantity} <button id="eliminarCarrito${id}">❌</button>`
       listaCarrito.appendChild(elementoLista)
       const botonBorrar = document.getElementById(`eliminarCarrito${id}`)
       botonBorrar.addEventListener("click",()=>{
@@ -115,9 +206,11 @@ const renderizarPlan = ()=>{
   // renderiza productos en el DOM
   const contenedorPlan = document.getElementById("contenedorPlan")
   planBase.forEach(({plan, id, tipo, precio, consulta, descripcion})=>{
-      const planCard = document.createElement("div")
+      const planCard = document.createElement("div");
+      planCard.classList.add("col-xl-3", "col-md-6", "col-xs-12")
       planCard.innerHTML = `
             <div class="card" style="width: 18rem;" id="producto${id}">
+            <img src="./imagenesJS/${plan+id}.jpg" class="card-img-top" alt="${plan}">
                 <div class="card-body">
                     <h5 class="Plan">${plan}</h5>
                     <h6>${tipo}</h6>
@@ -147,12 +240,20 @@ const renderizarPlan = ()=>{
     })
 }
 
+
 const finalizarCompra = ()=>{
   // Borra el array y le da un mensaje al usuario
+  
   borrarCarrito()
   let mensaje = document.getElementById("carritoTotal")
-  mensaje.innerHTML = "Muchas gracias por su compra🥳, los esperamos para la consulta👨🏻‍⚕️"
-
+  
+  // mensaje.innerHTML = "Muchas gracias por su compra🥳, los esperamos para la consulta👨🏻‍⚕️"
+  // Se agrego confirmacion de compra y libreria de Sweetalert2 para el aviso 
+  Swal.fire(
+    'Felicitaciones!',
+    'Has comprado tu plan en breve te llegara un email con la confirmacion de tu compra📩!',
+    'success'
+  )
 }
 
 // DOM
@@ -162,6 +263,55 @@ compraFinal.addEventListener("click",(()=>{finalizarCompra()}))
 // Testing
 renderizarPlan()
 renderizarCarrito()
+
+// Cotizacion de dolar para la consulta (API , fetch y promesas)
+const cotizacionDolar = "https://criptoya.com/api/dolar";
+const divDolar = document.getElementById("divDolar");
+
+setInterval(() => {
+    fetch(cotizacionDolar)
+    .then (response => response.json ())
+    .then(({oficial, blue, })=>{
+        divDolar.innerHTML= `
+        <h2>Tipos de Dólar: </h2>
+        <p>Dolar Oficial: $ ${oficial} pesos argentinos</p>
+        <p>Dolar Blue: $ ${blue} pesos argentinos</p>`
+    })
+    .catch(error => console.error (error))
+    
+}, 3000);
+
+
+
+
+  
+// ejjeplo de validacion en internet
+// document.addEventListener("DOMContentLoaded", function() {
+//   document.getElementById("formulario").addEventListener('submit', validarFormulario); 
+// });
+
+// function validarFormulario(e) {
+//   e.preventDefault();
+//   let nombre = document.getElementById('nombre').value;
+//   if(nombre.length < 1) {
+//     alert('No has escrito nada en el usuario');
+//     return;
+//   }
+//   let apellido = document.getElementById('apellido').value;
+//   if (apellido.length < 1) {
+//     alert('La clave no es válida');
+//     return;
+//   }
+//   this.submit();
+  
+// }
+
+
+
+   
+  
+
+
 
 // Cotizaciones de consulta con Nutri Power
 
