@@ -1,13 +1,191 @@
 
-.card {
-    display: flex;
-    align-items: center;
-    margin:0.5rem;
-}
-.imgPlan{
-    width:150px;
-    height: 150px;
-    object-fit: contain;
-    margin-top: 1rem;
-    display: flex;
-}
+/* estilo.css */
+
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Estilos generales */
+  body {
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        background: url('imagenesJS/fondo.jpg') center center fixed; /* Reemplaza 'tu_nueva_imagen.jpg' con la nueva imagen */
+        background-size: cover;
+        color: #343a40; /* Color de texto */
+    }
+  
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  /* Encabezado */
+  .header {
+    background-color: #007bff; /* Color de fondo del encabezado */
+    color: #fff; /* Color de texto del encabezado */
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .header h2 {
+    margin-bottom: 10px;
+  }
+  
+  /* Sección de contacto */
+  .contact-section {
+    padding: 50px 0;
+  }
+  
+  /* Formulario de contacto */
+  #formulario {
+    background-color: #fff;
+    padding: 100px;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 2rem;
+  }
+  
+  /* Estilos de los campos de entrada */
+  input {
+    width: 50%;
+    padding: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Botón de enviar */
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  /* Estilos para hacer el input responsive */
+  @media (max-width: 768px) {
+    input {
+      width: 100%;
+    }
+  }
+  
+  /* Sección de cotización de dólar */
+  #divDolar {
+    margin-top: 20px;
+  }
+  
+  /* Pie de página */
+  .footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  /* Estilos para la lista de productos en el carrito */
+  #listaCarrito {
+    list-style: none;
+  }
+  
+  /* Estilos para los productos en el carrito */
+  #listaCarrito li {
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para el botón de compra final */
+  #botonCompraFinal {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Estilos para el carrito total */
+  #carritoTotal {
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  /* Estilos para la sección de planes */
+  #contenedorPlan {
+    display:flex ;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+    gap: 100px;
+  }
+  
+  /* Estilos para las tarjetas de los planes */
+  .card {
+    width: 18rem; /* Ancho máximo de las tarjetas */
+    margin: 1rem;
+    overflow: hidden; /* Evita que las imágenes sobresalgan */
+    border: 10px solid #ddd; /* Agrega un borde para separar visualmente las tarjetas */
+    border-radius: 8px; /* Bordes redondeados para un aspecto más limpio */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  /* Estilos para los precios y cantidades en las tarjetas de los planes */
+  .card-body span {
+    display: block;
+    margin-top: 5px;
+  }
+  
+  /* Estilos para las imágenes de los planes */
+  .card-img-top {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Estilos para la sección de cotización del dólar */
+  #divDolar {
+    margin-top: 20px;
+  }
+  
+  /* Estilos para la sección de carrito */
+  #listaCarrito {
+    margin-top: 20px;
+  }
+  
+  /* Estilos para la sección de carrito total */
+  #carritoTotal {
+    font-weight: bold;
+    margin-top: 20px;
+    
+  }
+  
+  /* Estilos para el botón de compra final */
+  #botonCompraFinal {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+   
+  }
+  
+  #contenedorPlan .card {
+    margin-bottom: 10px;
+  }
+  
+  /* Ajustar tamaño del texto y centrar */
+  .card-body {
+    text-align: center;
+  }
+  
+  /* Ajustar márgenes internos de los botones */
+  .card-body button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+ 
+ 
